@@ -1,18 +1,17 @@
 import requests
 import json
-import os.path
 import feedparser
 import UrlQueryAdd
-import pprint
+from pathlib import Path
 
 
 def webhookrun(channel_id):
     # WebHookURLの取得 定義がない場合は即終了
     try:
-        with open(r"webhook.ini") as f:
-            readfile = open('webhook.ini', 'r', encoding='utf-8')
-            webhookurl = readfile.read()
-            print(webhookurl)
+        dirname = Path(__file__).resolve().parent
+        readfile = open(dirname.joinpath("webhook.ini"), 'r', encoding='utf-8')
+        webhookurl = readfile.read()
+        print(webhookurl)
     except FileNotFoundError:
         print("WebHookURLが定義されているファイルがありません。")
         return

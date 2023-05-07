@@ -31,9 +31,10 @@ def acquire(args):
 
     # 最新のIDををとりあえずファイルに出力しておく
     # ファイルがないときは新規で作成
-    myfile = Path('LatestVideoId.txt')
+    dirname = Path(__file__).resolve().parent
+    myfile = Path(dirname.joinpath('LatestVideoId.txt'))
     myfile.touch(exist_ok=True)
-    setid = open('LatestVideoId.txt', 'w', encoding='utf-8')
+    setid = open(dirname.joinpath('LatestVideoId.txt'), 'w', encoding='utf-8')
     setid.write(urlid)
     setid.close()
 
